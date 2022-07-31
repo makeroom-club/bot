@@ -108,8 +108,7 @@ async def manage_reactions(payload):
     if payload.event_type == 'REACTION_ADD':
         await payload.member.add_roles(role)
     else:
-        member = await guild.fetch_member(payload.user_id)
-        await member.remove_roles(role)
+        await bot.http.remove_role(guild_id, payload.user_id, role.id)
 
 
 @bot.event
